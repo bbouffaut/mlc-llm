@@ -8,7 +8,8 @@ FROM  dustynv/cuda:12.2-r36.2.0
 
 USER root
 # https://forums.developer.nvidia.com/t/libopenblas-so-0-not-found/264406
-RUN apt update && apt install -y vim libopenblas-dev pip cmake git 
+RUN apt update && apt install -y vim libopenblas-dev pip git
+RUN pip install cmake==3.25.0 
 
 # https://github.com/abetlen/llama-cpp-python/issues/1779#issuecomment-2396550099
 #https://medium.com/@ryan.stewart113/a-simple-guide-to-enabling-cuda-gpu-support-for-llama-cpp-python-on-your-os-or-in-containers-8b5ec1f912a4
@@ -18,7 +19,8 @@ RUN pip uninstall --yes transformers
 RUN pip install transformers
 
 # https://llm.mlc.ai/docs/install/mlc_llm.html
-RUN curl -y --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+#RUN curl -y --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+RUN apt install -y cargo
 
 
 
