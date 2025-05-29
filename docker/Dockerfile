@@ -22,5 +22,8 @@ RUN pip install transformers
 #RUN curl -y --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 RUN apt install -y cargo
 
+ENV MLC_LLM_SOURCE_DIR=/workspace/mlc-llm
+ENV PYTHONPATH=$MLC_LLM_SOURCE_DIR/python:$PYTHONPATH
+
 
 
