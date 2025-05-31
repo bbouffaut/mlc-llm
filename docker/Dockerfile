@@ -25,5 +25,18 @@ RUN apt install -y cargo
 ENV MLC_LLM_SOURCE_DIR=/workspace/mlc-llm
 ENV PYTHONPATH=$MLC_LLM_SOURCE_DIR/python:$PYTHONPATH
 
+# Install Fashinfer from source
+# https://docs.flashinfer.ai/installation.html
+
+# Install pytorch2.6 for cuda11.8 (the previous version 12.2)
+# CHECK toch is installed with CUDA: python3 -c "import torch; print(torch.version.cuda)" 
+RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+# Build MLC-LLM from SOurce
+# https://llm.mlc.ai/docs/install/mlc_llm.html
+
+
+
+
 
 
