@@ -4,7 +4,7 @@
 # jetson-containers build --name=llamacpp triton llama_cpp
 
 # https://hub.docker.com/u/dustynv
-FROM  dustynv/cuda:12.2-r36.2.0
+FROM  dustynv/mlc:0.20.0-r36.4.0
 
 USER root
 # https://forums.developer.nvidia.com/t/libopenblas-so-0-not-found/264406
@@ -25,14 +25,7 @@ RUN apt install -y cargo
 ENV MLC_LLM_SOURCE_DIR=/workspace/mlc-llm
 ENV PYTHONPATH=$MLC_LLM_SOURCE_DIR/python:$PYTHONPATH
 
-# Install Fashinfer from source
-# https://docs.flashinfer.ai/installation.html
-
-# Install pytorch2.6 for cuda11.8 (the previous version 12.2)
-# CHECK toch is installed with CUDA: python3 -c "import torch; print(torch.version.cuda)" 
-RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-
-# Build MLC-LLM from SOurce
+# Build MLC-LLM from Source
 # https://llm.mlc.ai/docs/install/mlc_llm.html
 
 
