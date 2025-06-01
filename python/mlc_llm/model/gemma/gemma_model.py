@@ -38,6 +38,7 @@ class GemmaConfig(ConfigBase):  # pylint: disable=too-many-instance-attributes
     max_batch_size: int = 1
     kwargs: Dict[str, Any] = dataclasses.field(default_factory=dict)
 
+    # LOOKING: this is where to check how GemmaConfig is processed
     def __post_init__(self):
         if self.hidden_activation is None:
             self.hidden_activation = self.kwargs.get("hidden_act", None)

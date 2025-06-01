@@ -42,6 +42,7 @@ class CompileArgs:  # pylint: disable=too-many-instance-attributes
     def __post_init__(self) -> None:
         self.opt.update(self.target, self.quantization)
 
+    # LOOKING: the section where compilation arguments are displayed
     def display(self) -> None:
         """Display the arguments to stdout."""
         out = StringIO()
@@ -154,7 +155,9 @@ def _compile(args: CompileArgs, model_config: ConfigBase):
                 "KN layout (q3f16_0 and q4f16_0) is not supported for tensor parallelism"
             )
         model, _ = args.model.quantize[args.quantization.kind](model_config, args.quantization)
+        
         # Step 2. Exporting the model to TVM Unity
+        # TODO: Uncomment this when finished LOOKING
         logger.info("Exporting the model to TVM Unity compiler")
         mod, named_params, ext_mods = model.export_tvm(
             spec=model.get_default_spec(),  # type: ignore
@@ -228,6 +231,7 @@ def compile(  # pylint: disable=too-many-arguments,redefined-builtin
     else:
         model_config = model_type.config.from_dict(config)
     model_config.kwargs = {}
+    # LOOKING: Compile Arguments
     args = CompileArgs(
         model_config,
         quantization,
@@ -241,4 +245,5 @@ def compile(  # pylint: disable=too-many-arguments,redefined-builtin
         debug_dump,
     )
     args.display()
+    # LOOKING: This is the place where compilation is called. Comment to not process the compilation but display final configuration instead
     _compile(args, model_config)

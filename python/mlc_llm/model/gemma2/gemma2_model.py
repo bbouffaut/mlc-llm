@@ -32,6 +32,7 @@ class Gemma2Config(GemmaConfig):
     query_pre_attn_scalar: int = None
     sliding_window: int = None
 
+    # LOOKING: Gemma2 specific overwriting
     def __post_init__(self):
         super().__post_init__()
         # NOTE: override the context window size with the Gemma2 sliding window size,
