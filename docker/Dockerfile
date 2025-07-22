@@ -28,6 +28,8 @@ ENV PYTHONPATH=$MLC_LLM_SOURCE_DIR/python:$PYTHONPATH
 # Build MLC-LLM from Source
 # https://llm.mlc.ai/docs/install/mlc_llm.html
 
+RUN pip install uv
+
 
 
 
